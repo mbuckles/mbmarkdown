@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="render"></div>
+  </div>
+ <footer>
+   <% include ../partials/footer.ejs %>
+   <script>
+   "use strict";
+
+   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+   function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+   function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+   var MarkDown = function (_React$Component) {
+     _inherits(MarkDown, _React$Component);
+
+     function MarkDown(props) {
+       _classCallCheck(this, MarkDown);
+
+       var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
+
+       _this.state = {
+         markdown: '# Hello, this is a markdown text area.\n\nFeel free to erase this text and start a new markdown that will preview live. The are some sample below:\n--------------------------------------------------------------------\n\n## Slightly smaller hello\n\n### Even smaller Hello  \n\nLeave 2 spaces at the end of a line to do a  line break\n\nText attributes *italic*, ~~strikethrough~~ , **bold**,\n`monospace`.\n\nUnordered list:\n\n  * bananas\n  * oranges\n  * apples\n\nNumbered list:\n\n  1. grapefruit\n  2. blueberries\n  3. strawberries'
+       };
+       return _this;
+     }
+
+     MarkDown.prototype.handleChange = function handleChange(event) {
+       this.setState({
+         markdown: event.target.value
+       });
+     };
+
+     MarkDown.prototype.render = function render() {
+       var _this2 = this;
+
+       return React.createElement(
+         "div",
+         { className: "row" },
+         React.createElement(
+           "div",
+           { className: "col-md-6" },
+           React.createElement(
+             "h1",
+             { className: "text-center" },
+             "Markdown"
+           ),
+           React.createElement("textarea", { onChange: function onChange() {
+               return _this2.handleChange(event);
+             }, value: this.state.markdown, rows: "20" })
+         ),
+         React.createElement(
+           "div",
+           { className: "col-md-6" },
+           React.createElement(
+             "h1",
+             { className: "text-center" },
+             "Markdown Preview"
+           ),
+           React.createElement("div", { dangerouslySetInnerHTML: { __html: marked(this.state.markdown) } })
+         )
+       );
+     };
+
+     return MarkDown;
+   }(React.Component);
+
+   ReactDOM.render(React.createElement(MarkDown, null), document.querySelector('.render'));
+   </script>
+ </footer>
+</html>
+</body>
